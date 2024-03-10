@@ -27,6 +27,7 @@ passport.use(
         (accessToken, refreshToken, profile, done) => {
             User.findOne({googleId: profile.id}).then(existinguser => {
                 if(existinguser){
+                    console.log('googlekey-'+keys.prodcheck);
                     done(null, existinguser);
                 }else{
                     new User({ googleId: profile.id }).save()
